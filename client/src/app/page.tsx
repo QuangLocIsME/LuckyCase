@@ -1,101 +1,213 @@
-import Image from "next/image";
+import { Search, Star, TrendingUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import CaseCard from "./case-card"
+import { NavigationMenu } from "./navigation-menu"
 
-export default function Home() {
+const cases = [
+  {
+    id: 1,
+    name: "Emerald Blaze",
+    price: 144.69,
+    image: "https://static.skinrave.gg/cases/case256.webp",
+    isNew: true,
+    color: "from-emerald-400 to-green-600",
+  },
+  {
+    id: 2,
+    name: "Crimson Fury",
+    price: 276.17,
+    image: "https://static.skinrave.gg/cases/case255.webp",
+    isNew: true,
+    color: "from-red-500 to-rose-700",
+  },
+  {
+    id: 3,
+    name: "Sapphire Dream",
+    price: 189.99,
+    image: "https://static.skinrave.gg/cases/case253.webp",
+    isNew: true,
+    color: "from-blue-400 to-indigo-600",
+  },
+  {
+    id: 4,
+    name: "Golden Glory",
+    price: 256.5,
+    image: "https://static.skinrave.gg/cases/case252.webp",
+    color: "from-yellow-400 to-amber-600",
+  },
+  {
+    id: 5,
+    name: "Amethyst Aura",
+    price: 199.99,
+    image: "https://static.skinrave.gg/cases/case254.webp",
+    color: "from-purple-400 to-indigo-600",
+  },
+  {
+    id: 6,
+    name: "Neon Striker",
+    price: 299.99,
+    image: "https://static.skinrave.gg/cases/case271.webp",
+    isRisky: true,
+    color: "from-green-400 to-blue-500",
+  },
+  {
+    id: 7,
+    name: "Inferno Blaze",
+    price: 178.5,
+    image: "https://static.skinrave.gg/cases/case270.webp",
+    color: "from-orange-500 to-red-600",
+  },
+  {
+    id: 8,
+    name: "Arctic Frost",
+    price: 145.0,
+    image: "https://static.skinrave.gg/cases/case273.webp",
+    color: "from-cyan-400 to-blue-600",
+  },
+  {
+    id: 9,
+    name: "Nebula Nexus",
+    price: 289.99,
+    image: "https://static.skinrave.gg/cases/case274.webp",
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    id: 10,
+    name: "Toxic Hazard",
+    price: 167.99,
+    image: "https://static.skinrave.gg/cases/case272.webp",
+    isNew: true,
+    color: "from-green-500 to-yellow-400",
+  },
+  {
+    id: 11,
+    name: "Phantom Ops",
+    price: 234.5,
+    image: "https://static.skinrave.gg/cases/case275.webp",
+    isRisky: true,
+    color: "from-gray-600 to-gray-900",
+  },
+  {
+    id: 12,
+    name: "Cyber Punk",
+    price: 189.99,
+    image: "https://static.skinrave.gg/cases/case276.webp",
+    color: "from-pink-500 to-purple-600",
+  },
+  {
+    id: 13,
+    name: "Dragon's Hoard",
+    price: 399.99,
+    image: "https://static.skinrave.gg/cases/case281.webp",
+    isNew: true,
+    color: "from-red-600 to-yellow-500",
+  },
+  {
+    id: 14,
+    name: "Stealth Ops",
+    price: 299.99,
+    image: "https://static.skinrave.gg/cases/case280.webp",
+    color: "from-gray-700 to-gray-900",
+  },
+  {
+    id: 15,
+    name: "Quantum Flux",
+    price: 349.99,
+    image: "https://static.skinrave.gg/cases/case277.webp",
+    isNew: true,
+    color: "from-blue-400 to-purple-600",
+  },
+]
+
+export default function CasesPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* Top Navigation */}
+      <nav className="sticky top-0 z-50 backdrop-blur-lg bg-black/50 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between p-4">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                  <span className="text-2xl">🎮</span>
+                </div>
+                <span className="text-lg font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+                  CSGO Cases
+                </span>
+              </div>
+              <NavigationMenu />
+            </div>
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" className="text-gray-400 hover:text-white">
+                <Star className="w-4 h-4 mr-2" />
+                Favorites
+              </Button>
+              <Button className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 transition-opacity">
+                <TrendingUp className="w-4 h-4 mr-2" />
+                WALLET
+              </Button>
+              <Button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 transition-opacity">
+                SIGN IN
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto p-6">
+        {/* Filters */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+              Featured Cases
+            </h1>
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-green-400/10 to-blue-500/10 border border-green-500/20 text-green-400">
+              {cases.length} Cases Available
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Select defaultValue="all">
+              <SelectTrigger className="w-[180px] bg-black/50 border-gray-800">
+                <SelectValue placeholder="PRICE: ALL" />
+              </SelectTrigger>
+              <SelectContent className="bg-black border-gray-800">
+                <SelectItem value="all">PRICE: ALL</SelectItem>
+                <SelectItem value="low">Low to High</SelectItem>
+                <SelectItem value="high">High to Low</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select defaultValue="newest">
+              <SelectTrigger className="w-[180px] bg-black/50 border-gray-800">
+                <SelectValue placeholder="NEWEST FIRST" />
+              </SelectTrigger>
+              <SelectContent className="bg-black border-gray-800">
+                <SelectItem value="newest">NEWEST FIRST</SelectItem>
+                <SelectItem value="oldest">OLDEST FIRST</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Input
+                placeholder="Search for a Case"
+                className="pl-10 bg-black/50 border-gray-800 w-[200px] focus:ring-2 ring-green-500/20"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Cases Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {cases.map((item) => (
+            <CaseCard key={item.id} {...item} />
+          ))}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
-  );
+  )
 }
+
