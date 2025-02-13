@@ -2,8 +2,8 @@ import { Search, Star, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import CaseCard from "./case-card"
-import { NavigationMenu } from "./navigation-menu"
+import CaseCard from "@/components/case-card"
+import { NavigationMenu } from "@/components/navigation-menu"
 
 const cases = [
   {
